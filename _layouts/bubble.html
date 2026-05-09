@@ -112,23 +112,21 @@
         letterPairs.push([container, inner]);
       });
 
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(resize, 200);
-      });
-      resize();
+      document.body.style.height = ((letterPairs.length * cWidth * 2) + window.screen.height) + 'px';
 
+      let ticking = false;
       window.addEventListener('scroll', () => {
         offset = -window.scrollY;
-        update();
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            update();
+            ticking = false;
+          });
+          ticking = true;
+        }
       });
       update();
     });
-
-    function resize() {
-      document.body.style.height = ((letterPairs.length * cWidth) + window.innerHeight + (window.innerWidth / 2) - (cWidth / 2)) + 'px';
-    }
 
     function update() {
       let radius = startRadius;
