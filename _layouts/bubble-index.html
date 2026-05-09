@@ -57,38 +57,11 @@
       border-bottom-right-radius: 10px;
     }
 
-    #post-links {
-      position: fixed;
-      bottom: 1.5em;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      z-index: 999;
-      font-family: "OnulHeugdan", monospace;
-      font-size: 14px;
-    }
-
-    #post-links a {
-      display: inline-block;
-      margin: 0.2em 0.5em;
-      color: #3366ff;
-      text-decoration: none;
-    }
-
-    #post-links a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
   <div id="wrapper"></div>
   <div id="text" style="display:none">{{ site.title }} — {{ site.description }} {% for post in site.posts %} / {{ post.title }} {% endfor %}</div>
-
-  <div id="post-links">
-    {% for post in site.posts %}
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    {% endfor %}
-  </div>
 
   <script>
     let textElement;
