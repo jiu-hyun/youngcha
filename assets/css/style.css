@@ -1,38 +1,61 @@
+@font-face {
+  font-family: "OnulHeugdan";
+  src: url("/assets/fonts/OnulHeugdan-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "OnulHeugdan";
+  src: url("/assets/fonts/OnulHeugdan-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "OnulHeugdan";
+  src: url("/assets/fonts/OnulHeugdan-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
 html {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: 0;
+  font-family: "OnulHeugdan", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
 }
 
 body {
   margin: 2rem auto;
   max-width: 42rem;
   padding: 0 1rem 4rem;
-  color: #111;
+  color: #3366ff;
   background: #fff;
   word-break: keep-all;
-  word-wrap: normal;
-  overflow-wrap: normal;
-  line-break: strict;
-  hyphens: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
 h3 {
+  font-weight: 400;
   line-height: 1.25;
+  font-size: 1em;
 }
 
 .site-title {
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   word-break: normal;
-  overflow-wrap: anywhere;
 }
 
 .site-description,
 .post-meta,
 time {
-  color: #555;
+  color: #3366ff;
+  opacity: 0.7;
+  font-style: italic;
 }
 
 .post-meta span::before {
@@ -43,23 +66,24 @@ p,
 li,
 blockquote {
   word-break: keep-all;
-  word-wrap: normal;
-  overflow-wrap: normal;
-  line-break: strict;
-  hyphens: none;
 }
 
 a {
-  color: #0645ad;
-  overflow-wrap: anywhere;
+  color: #3366ff;
+  text-decoration: none;
 }
 
 a:visited {
-  color: #0b0080;
+  color: #3366ff;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .post-list {
-  padding-left: 1.4rem;
+  padding-left: 0;
+  list-style: none;
 }
 
 .post-list li {
@@ -68,13 +92,14 @@ a:visited {
 
 .post-list time {
   margin-right: 0.5rem;
+  font-style: italic;
 }
 
 blockquote {
   margin-left: 0;
   padding-left: 1rem;
-  border-left: 1px solid #aaa;
-  color: #333;
+  border-left: 1px solid #3366ff;
+  opacity: 0.8;
 }
 
 code,
@@ -86,7 +111,6 @@ pre {
 pre {
   overflow-x: auto;
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid #3366ff;
   word-break: normal;
-  overflow-wrap: normal;
 }

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.title }}</title>
+  <style>
+    @font-face {
+      font-family: "OnulHeugdan";
+      src: url("/assets/fonts/OnulHeugdan-Regular.otf") format("opentype");
+      font-weight: 400;
+    }
+
+    html {
+      height: auto;
+      overflow-y: auto;
+    }
+
+    body {
+      font: 18px "OnulHeugdan", monospace;
+      overflow-x: hidden;
+      margin: 0;
+      background: #fff;
+    }
+
+    #wrapper {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+    }
+
+    .container {
+      position: absolute;
+    }
+
+    .inner {
+      position: absolute;
+      left: -10px;
+      background: #fcf;
+      color: #513fce;
+      width: 20px;
+      height: 22px;
+      min-width: 20px;
+      min-height: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container:first-child .inner {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    .container:last-child .inner {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    #post-links {
+      position: fixed;
+      bottom: 1.5em;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 999;
+      font-family: "OnulHeugdan", monospace;
+      font-size: 14px;
+    }
+
+    #post-links a {
+      display: inline-block;
+      margin: 0.2em 0.5em;
+      color: #3366ff;
+      text-decoration: none;
+    }
+
+    #post-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper"></div>
+  <div id="text" style="display:none">{{ site.title }} — {{ site.description }} {% for post in site.posts %} / {{ post.title }} {% endfor %}</div>
+
+  <div id="post-links">
+    {% for post in site.posts %}
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    {% endfor %}
+  </div>
+
+  <script>
+    let textElement;
+    const letterPairs = [];
+    let offset = -window.scrollY;
+    let wrapper;
+    let cWidth = 20;
+    let cHeight = 20;
+    let startRadius = 200;
+
+    window.addEventListener('load', () => {
+      wrapper = document.getElementById('wrapper');
+      textElement = document.getElementById('text');
+      const input = textElement.textContent.replace(/\s+/g, ' ').trim();
+      const split = input.split('');
+
+      textElement.innerHTML = '';
+
+      startRadius = Math.max(80, Math.sqrt(split.length) * 15);
+
+      split.forEach((character, i) => {
+        const container = document.createElement('div');
+        container.className = 'container';
+        container.style.zIndex = (split.length - i);
+        wrapper.appendChild(container);
+
+        const inner = document.createElement('span');
+        inner.className = 'inner';
+        inner.innerHTML = character;
+        container.appendChild(inner);
+
+        letterPairs.push([container, inner]);
+      });
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      window.addEventListener('scroll', () => {
+        offset = -window.scrollY;
+        update();
+      });
+      update();
+    });
+
+    function resize() {
+      document.body.style.height = ((letterPairs.length * cWidth) + window.innerHeight + (window.innerWidth / 2) - (cWidth / 2)) + 'px';
+    }
+
+    function update() {
+      let radius = startRadius;
+      let angle = 0;
+      let x = offset;
+
+      letterPairs.forEach(pair => {
+        const container = pair[0];
+        const inner = pair[1];
+
+        if (x < -window.innerWidth / 2 - cWidth) {
+          container.style.display = 'none';
+        } else if (x < cWidth / 2) {
+          container.style.left = x + 'px';
+          container.style.display = 'block';
+          inner.style.top = `-${startRadius}px`;
+          container.style.transform = 'rotate(0deg)';
+        } else {
+          const circumference = 2 * Math.PI * radius;
+          container.style.left = '0';
+          container.style.display = 'block';
+
+          if (!angle) {
+            angle = (x / circumference) * 360;
+            radius -= (x / circumference) * cHeight;
+          }
+
+          inner.style.top = -radius + 'px';
+          container.style.transform = `rotate(${angle}deg)`;
+
+          angle += (cWidth / circumference) * 360;
+          radius -= (cWidth / circumference) * cHeight;
+        }
+
+        x += cWidth;
+      });
+    }
+  </script>
+</body>
+</html>
