@@ -112,12 +112,10 @@
         letterPairs.push([container, inner]);
       });
 
+      let resizeTimer;
       window.addEventListener('resize', () => {
-        cWidth = window.innerWidth < 600 ? 22 : 20;
-        cHeight = cWidth;
-        const maxRadius = window.innerWidth < 600 ? window.innerWidth * 0.25 : window.innerWidth * 0.35;
-        startRadius = Math.min(Math.max(50, Math.sqrt(split.length) * 15), maxRadius);
-        resize();
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 200);
       });
       resize();
 
