@@ -83,7 +83,7 @@
     const letterPairs = [];
     let offset = -window.scrollY;
     let wrapper;
-    let cWidth = window.innerWidth < 600 ? 14 : 20;
+    let cWidth = window.innerWidth < 600 ? 22 : 20;
     let cHeight = cWidth;
     let startRadius = 200;
 
@@ -95,7 +95,7 @@
 
       textElement.innerHTML = '';
 
-      const maxRadius = window.innerWidth * 0.35;
+      const maxRadius = window.innerWidth < 600 ? window.innerWidth * 0.25 : window.innerWidth * 0.35;
       startRadius = Math.min(Math.max(50, Math.sqrt(split.length) * 15), maxRadius);
 
       split.forEach((character, i) => {
@@ -113,9 +113,9 @@
       });
 
       window.addEventListener('resize', () => {
-        cWidth = window.innerWidth < 600 ? 14 : 20;
+        cWidth = window.innerWidth < 600 ? 22 : 20;
         cHeight = cWidth;
-        const maxRadius = window.innerWidth * 0.35;
+        const maxRadius = window.innerWidth < 600 ? window.innerWidth * 0.25 : window.innerWidth * 0.35;
         startRadius = Math.min(Math.max(50, Math.sqrt(split.length) * 15), maxRadius);
         resize();
       });
