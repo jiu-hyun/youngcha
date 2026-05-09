@@ -83,8 +83,8 @@
     const letterPairs = [];
     let offset = -window.scrollY;
     let wrapper;
-    let cWidth = window.innerWidth < 600 ? 22 : 20;
-    let cHeight = cWidth;
+    let cWidth = 20;
+    let cHeight = 20;
     let startRadius = 200;
 
     window.addEventListener('load', () => {
@@ -95,8 +95,7 @@
 
       textElement.innerHTML = '';
 
-      const maxRadius = window.innerWidth < 600 ? window.innerWidth * 0.25 : window.innerWidth * 0.35;
-      startRadius = Math.min(Math.max(50, Math.sqrt(split.length) * 15), maxRadius);
+      startRadius = Math.max(80, Math.sqrt(split.length) * 15);
 
       split.forEach((character, i) => {
         const container = document.createElement('div');
