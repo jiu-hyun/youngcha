@@ -1,20 +1,22 @@
+---
+---
 @font-face {
   font-family: "OnulHeugdan";
-  src: url("/assets/fonts/OnulHeugdan-Regular.otf") format("opentype");
+  src: url("{{ '/assets/fonts/OnulHeugdan-Regular.otf' | relative_url }}") format("opentype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "OnulHeugdan";
-  src: url("/assets/fonts/OnulHeugdan-Bold.otf") format("opentype");
+  src: url("{{ '/assets/fonts/OnulHeugdan-Bold.otf' | relative_url }}") format("opentype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "OnulHeugdan";
-  src: url("/assets/fonts/OnulHeugdan-Black.otf") format("opentype");
+  src: url("{{ '/assets/fonts/OnulHeugdan-Black.otf' | relative_url }}") format("opentype");
   font-weight: 900;
   font-style: normal;
 }
