@@ -155,7 +155,7 @@
 
         if (x < -window.innerWidth / 2 - cWidth) {
           container.style.display = 'none';
-        } else if (x < cWidth / 2) {
+        } else if (x < 0) {
           container.style.left = x + 'px';
           container.style.display = 'block';
           inner.style.top = `-${startRadius}px`;
