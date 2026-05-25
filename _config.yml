@@ -1,8 +1,8 @@
 title: "youngcha hyun"
-description: "현지우는 디자인과 페인팅을 한다. 2024년도부터 김유빈@benuye 과 @2emagazine 을 운영해오고 있다."
+description: "현지우는 홍익대학교에서 시각디자인과 회화를 전공했다. 2024년도부터 김유빈 @benuye와 @2emagazine 을 운영해오고 있다."
 author: "youngcha hyun"
-url: "https://jiu-hyun.github.io"
-baseurl: ""
+url: "https://jiu-hyun.github.io/youngcha/"
+baseurl: "/youngcha"
 timezone: Asia/Seoul
 
 permalink: /:year/:title.html
