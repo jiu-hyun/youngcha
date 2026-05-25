@@ -38,10 +38,11 @@
       left: -10px;
       background: #fcf;
       color: #513fce;
-      width: 28px;
-      height: 30px;
-      min-width: 28px;
-      min-height: 30px;
+      width: 23px;
+      height: 25px;
+      min-width: 23px;
+      min-height: 25px;
+      will-change: transform;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -94,8 +95,8 @@
     const letterPairs = [];
     let offset = -window.scrollY;
     let wrapper;
-    let cWidth = 28;
-    let cHeight = 28;
+    let cWidth = 23;
+    let cHeight = 23;
     let startRadius = 200;
 
     window.addEventListener('load', () => {
@@ -125,9 +126,16 @@
       window.addEventListener('resize', resize);
       resize();
 
+      let ticking = false;
       window.addEventListener('scroll', () => {
         offset = -window.scrollY;
-        update();
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            update();
+            ticking = false;
+          });
+          ticking = true;
+        }
       });
       update();
     });
